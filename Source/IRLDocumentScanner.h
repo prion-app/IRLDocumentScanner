@@ -10,12 +10,12 @@
 
 #import <Availability.h>
 
-#ifndef __IPHONE_8_0
-#warning "This project uses features only available in iPhone SDK 8.0 and later."
+#ifndef __IPHONE_9_3
+#warning "This project uses features only available in iPhone SDK 9.3 and later."
 #endif
 
 // Version
-#define IRLDOCUMENTSCANNER_VERSION       @"0.2.0"
+#define IRLDOCUMENTSCANNER_VERSION       @"0.3.0"
 
 // iOS Framework
 #ifdef __OBJC__

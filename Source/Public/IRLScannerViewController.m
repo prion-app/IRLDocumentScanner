@@ -7,9 +7,8 @@
 
 #import "IRLScannerViewController.h"
 #import "IRLCameraView.h"
-#import "TOCropViewController.h"
 
-@interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate>
+@interface IRLScannerViewController () <IRLCameraViewProtocol>
 
 @property (weak)                        id<IRLScannerViewControllerDelegate> camera_PrivateDelegate;
 
@@ -103,7 +102,7 @@
     [self.cameraView setDetectorType:self.detectorType];
     [self.cameraView setCameraViewType:self.cameraViewType];
     [self.cameraView setEnableShowAutoFocus:self.showAutoFocusWhiteRectangle];
-
+    
     if (![self.cameraView hasFlash]){
         self.flash_toggle.enabled = NO;
         self.flash_toggle.hidden = YES;
@@ -160,8 +159,8 @@
 - (IBAction)detctingQualityToggle:(id)sender {
     
     [self setDetectorType:(self.detectorType == IRLScannerDetectorTypeAccuracy) ?
-        IRLScannerDetectorTypePerformance : IRLScannerDetectorTypeAccuracy];
-
+IRLScannerDetectorTypePerformance : IRLScannerDetectorTypeAccuracy];
+    
     [self updateTitleLabel:nil];
 }
 
@@ -180,7 +179,7 @@
         default:
             break;
     }
-
+    
     [self updateTitleLabel:nil];
 }
 
@@ -195,14 +194,14 @@
     self.cancelWasTrigger = YES;
     [self.cameraView stop];
     [self updateTitleLabel:@""];
-
+    
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if ([self.camera_PrivateDelegate respondsToSelector:@selector(cameraViewCancelRequested:)]) {
         [self.camera_PrivateDelegate cameraViewCancelRequested:self];
     }
 #pragma clang diagnostic pop
-
+    
     if ([self.camera_PrivateDelegate respondsToSelector:@selector(didCancelIRLScannerViewController:)]) {
         [self.camera_PrivateDelegate didCancelIRLScannerViewController:self];
     }
@@ -235,7 +234,7 @@
     
     [self.contrast_type setSelected:NO];
     [self.contrast_type setHighlighted:NO];
-
+    
     switch (self.cameraViewType) {
         case IRLScannerViewTypeBlackAndWhite:
             [self.contrast_type setSelected:YES];
@@ -248,7 +247,7 @@
         default:
             break;
     }
-
+    
     // Update Text
     if (!text && [self.camera_PrivateDelegate respondsToSelector:@selector(cameraViewWillUpdateTitleLabel:)]) {
         text = [self.camera_PrivateDelegate cameraViewWillUpdateTitleLabel:self];
@@ -295,76 +294,38 @@
     imgView.opaque = NO;
     imgView.alpha = 0.0f;
     imgView.transform = CGAffineTransformMakeScale(0.4f, 0.4f);
-
+    
     // Some Feedback to the User
     UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
     white.backgroundColor = UIColor.whiteColor;
     white.alpha = 0.0f;
-
+    
     [self.view addSubview:white];
     [UIView animateWithDuration:0.2f animations:^{
         white.alpha = 1.0f;
     }];
     
-    if ([sender isKindOfClass:[UIButton class]]) {
-        
-        [self.cameraView captureImageWithCompletionHander:^(id data)
-         {
-             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-             
-             TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
-             cropViewController.delegate = self;
-             cropViewController.aspectRatioPickerButtonHidden = YES;
-             cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-             [self presentViewController:cropViewController animated:YES completion:nil];
-             
-         }];
-
-    } else {
-        
-        [self.view addSubview:imgView];
-
-        [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-            imgView.alpha = 1.0f;
-            
-        } completion:nil];
-        
-        // the Actual Capture
-        [self.cameraView captureImageWithCompletionHander:^(id data) {
-            UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-            
-            if (self.camera_PrivateDelegate){
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [self.camera_PrivateDelegate pageSnapped:image from:self];
-                });
-            }
-        }];
-
-    }
     
-}
-
-#pragma mark - TOCropViewControllerDelegate
-
-- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.camera_PrivateDelegate pageSnapped:image from:self];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    });
-}
-
-- (void)cropViewController:(TOCropViewController *)cropViewController didCropToCircularImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
+    [self.view addSubview:imgView];
     
-}
-
-- (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
-    [self dismissViewControllerAnimated:YES completion:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self cancelButtonPush:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        });
+    [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+        imgView.alpha = 1.0f;
+        
+    } completion:nil];
+    
+    // the Actual Capture
+    [self.cameraView captureImageWithCompletionHander:^(id data) {
+        UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+        
+        if (self.camera_PrivateDelegate){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.camera_PrivateDelegate pageSnapped:image from:self];
+            });
+        }
     }];
+    
+    
 }
 
 #pragma mark - IRLCameraViewProtocol
@@ -416,7 +377,7 @@
         [[weakSelf titleLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
         
     });
-
+    
     [self captureButton:view];
 }
 

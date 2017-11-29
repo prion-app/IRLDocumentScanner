@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		525031921EA2611D057008CC /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFB833C4F7D979B96FC96C0 /* Pods_demo.framework */; };
 		617822261B408FE000D73034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 617822251B408FE000D73034 /* main.m */; };
 		617822291B408FE000D73034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 617822281B408FE000D73034 /* AppDelegate.m */; };
 		6178222F1B408FE000D73034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6178222D1B408FE000D73034 /* Main.storyboard */; };
@@ -14,7 +15,6 @@
 		617822341B408FE000D73034 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617822321B408FE000D73034 /* LaunchScreen.xib */; };
 		617822401B408FE000D73034 /* demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178223F1B408FE000D73034 /* demoTests.m */; };
 		6178225B1B40A3C000D73034 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6178225A1B40A3C000D73034 /* ViewController.swift */; };
-		F220D99316E64A7EC0ED578D /* libPods-demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF3ABBC081F1AE456623052 /* libPods-demo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +42,8 @@
 		617822591B40A3BF00D73034 /* demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6178225A1B40A3C000D73034 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65F190FE12562101BF6FE1FE /* Pods-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-demo/Pods-demo.release.xcconfig"; sourceTree = "<group>"; };
-		6CF3ABBC081F1AE456623052 /* libPods-demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		881A88FEE1D5E5A5AD610A08 /* Pods-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-demo/Pods-demo.debug.xcconfig"; sourceTree = "<group>"; };
+		ABFB833C4F7D979B96FC96C0 /* Pods_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F220D99316E64A7EC0ED578D /* libPods-demo.a in Frameworks */,
+				525031921EA2611D057008CC /* Pods_demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,7 @@
 		3967643083022FE145878261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6CF3ABBC081F1AE456623052 /* libPods-demo.a */,
+				ABFB833C4F7D979B96FC96C0 /* Pods_demo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -251,9 +251,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-demo/Pods-demo-resources.sh",
+				"${PODS_ROOT}/../../IRLCamera.storyboard",
+				"${PODS_ROOT}/../../IRLCameraMedia.xcassets",
+				$PODS_CONFIGURATION_BUILD_DIR/TOCropViewController/TOCropViewControllerBundle.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -266,9 +271,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-demo/Pods-demo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IRLDocumentScanner/IRLDocumentScanner.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IRLDocumentScanner.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -281,13 +289,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-demo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -448,13 +459,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.irlmobile.scanner.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo/demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -468,12 +480,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.irlmobile.scanner.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo/demo-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

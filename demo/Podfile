@@ -6,4 +6,5 @@ target "demo" do
 
     pod 'IRLDocumentScanner', :path => '..'
 
+    use_frameworks!
 end

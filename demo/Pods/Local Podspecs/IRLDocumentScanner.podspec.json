@@ -1,6 +1,6 @@
 {
   "name": "IRLDocumentScanner",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "summary": "A Drop-in Document Scanner based View Controller.",
   "description": "A very simple to use class allowing you scan document with border detection.",
   "license": {
@@ -20,11 +20,6 @@
     "ios": "8.0"
   },
   "default_subspecs": "Default",
-  "dependencies": {
-    "TOCropViewController": [
-      "~> 2.0"
-    ]
-  },
   "subspecs": [
     {
       "name": "Default",

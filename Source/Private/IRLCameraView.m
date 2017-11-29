@@ -264,12 +264,6 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
             [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         }
-        //if ([device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]){
-		//[device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-		//}
-        if (device.isFlashAvailable) {
-            [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-        }
         
         if (configError) {
             NSLog(@"Error Configuring Video Catpures: %@", configError.localizedDescription);
@@ -351,10 +345,15 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)(void))completionHandler {
     
-    CGPoint pointOfInterest = CGPointZero;
-    CGSize frameSize        = self.bounds.size;
-    pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
-    [self focusWithPoinOfInterest:pointOfInterest completionHandler:completionHandler];
+    __weak typeof(self) weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGPoint pointOfInterest = CGPointZero;
+        CGSize frameSize        = weakSelf.bounds.size;
+        pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
+        [weakSelf focusWithPoinOfInterest:pointOfInterest completionHandler:completionHandler];
+    });
+    
 }
 
 - (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler {
@@ -665,10 +664,15 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     // Send the Resulting Image to the Sample Buffer
     if (self.context && _coreImageContext && _glkView != nil)
     {
-        __weak CIContext *weakCoreImageContext = _coreImageContext;
-        [weakCoreImageContext drawImage:image inRect:weakSelf.bounds fromRect:image.extent];
-        [weakSelf.context presentRenderbuffer:GL_RENDERBUFFER];
-        [_glkView setNeedsDisplay];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            __weak CIContext *weakCoreImageContext = _coreImageContext;
+            [weakCoreImageContext drawImage:image inRect:weakSelf.bounds fromRect:image.extent];
+            [weakSelf.context presentRenderbuffer:GL_RENDERBUFFER];
+            [_glkView setNeedsDisplay];
+            
+        });
+
     }
 }
 

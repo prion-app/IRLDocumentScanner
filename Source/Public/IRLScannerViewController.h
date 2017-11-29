@@ -206,17 +206,25 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 /**
  @brief This Button is here for the user to press in case if want to cancel the aciton.
  
- @discussion We provide an access to that button for you topersonalize its aspect.
+ @discussion We provide an access to that button for you to personalize its aspect.
  
  @return The button for our Cancel.
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_button;
 
+/**
+ @brief This Button is here for the user to press in case if want to cancel the aciton.
+ 
+ @discussion We provide an access to that button for you to personalize its aspect.
+ 
+ @return The button for our Cancel.
+ */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_scanning;
 
+/**
+ @brief cancel the action
+ */
 - (IBAction)cancelTapped:(id _Nullable )sender;
-
-@property(nonatomic, assign) id _Nullable  delegate;
 
 @end
 
