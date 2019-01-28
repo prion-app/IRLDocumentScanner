@@ -20,7 +20,6 @@
 		8287E7061FD013D2005B4668 /* IRLCamera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8287E7041FD013D2005B4668 /* IRLCamera.storyboard */; };
 		8287E7081FD13F37005B4668 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8287E7071FD13F37005B4668 /* TOCropViewController.framework */; };
 		8287E70A1FD13F62005B4668 /* IRLDocumentScannerFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E7091FD13F62005B4668 /* IRLDocumentScannerFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E9BE62A621FF3D7E003B7A1A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9BE62A821FF3D7E003B7A1A /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,8 +38,6 @@
 		8287E7091FD13F62005B4668 /* IRLDocumentScannerFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IRLDocumentScannerFramework.h; path = IRLDocumentScanner/IRLDocumentScannerFramework.h; sourceTree = "<group>"; };
 		82EBC1901FD013620079182A /* IRLDocumentScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IRLDocumentScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EBC1941FD013620079182A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E9BE62A721FF3D7E003B7A1A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		E9BE62A921FF3DA9003B7A1A /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +67,6 @@
 			children = (
 				8287E6F11FD01398005B4668 /* IRLScannerViewController.h */,
 				8287E6F21FD01398005B4668 /* IRLScannerViewController.m */,
-				E9BE62A821FF3D7E003B7A1A /* Localizable.strings */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -193,7 +189,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8287E7051FD013D2005B4668 /* IRLCameraMedia.xcassets in Resources */,
-				E9BE62A621FF3D7E003B7A1A /* Localizable.strings in Resources */,
 				8287E7061FD013D2005B4668 /* IRLCamera.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,18 +208,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E9BE62A821FF3D7E003B7A1A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9BE62A721FF3D7E003B7A1A /* en */,
-				E9BE62A921FF3DA9003B7A1A /* sv */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		82EBC1961FD013620079182A /* Debug */ = {
