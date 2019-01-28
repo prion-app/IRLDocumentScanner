@@ -123,7 +123,7 @@
     [self.cameraView start];
     
     [self.manual_button setTitle:NSLocalizedString(@"post_scanner_manual_button", "") forState: UIControlStateNormal];
-    [self.scan_button setTitle:NSLocalizedString(@"post_scanner_manual_button", "") forState: UIControlStateNormal];
+    [self.scan_button setTitle:NSLocalizedString(@"post_scanner_scan_button", "") forState: UIControlStateNormal];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
