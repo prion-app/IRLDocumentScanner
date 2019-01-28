@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  IRLDocumentScanner
+
+  Created by Thomas Kyritsis on 28/01/2019.
+  Copyright © 2019 iRLMobile. All rights reserved.
+*/
+
+"post_scanner_manual_button" = "Manuell";
+"post_scanner_scan_button" = "Skanna";
