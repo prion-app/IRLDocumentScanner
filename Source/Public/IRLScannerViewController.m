@@ -364,8 +364,6 @@
         }];
 
     }
-    
->>>>>>> upstream/master
 }
 
 #pragma mark - TOCropViewControllerDelegate
