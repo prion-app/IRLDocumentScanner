@@ -8,6 +8,7 @@
 #import "IRLScannerViewController.h"
 #import "IRLCameraView.h"
 #import "UIButton+Extensions.h"
+#import "TOCropViewController.h"
 
 @interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate>
 

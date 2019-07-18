@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		508FF80988B5203AE84B3841 /* Pods_IRLDocumentScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47682B8BAED00F649E102B63 /* Pods_IRLDocumentScanner.framework */; };
+		2487D04ADC3E397B23F02E1A /* libPods-IRLDocumentScanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 392D65C3F3460DDE95A928F0 /* libPods-IRLDocumentScanner.a */; };
 		8276EC44204072980059427F /* UIButton+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8276EC42204072980059427F /* UIButton+Extensions.h */; };
 		8276EC45204072980059427F /* UIButton+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8276EC43204072980059427F /* UIButton+Extensions.m */; };
 		8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6EF1FD01398005B4668 /* IRLDocumentScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		47682B8BAED00F649E102B63 /* Pods_IRLDocumentScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IRLDocumentScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		392D65C3F3460DDE95A928F0 /* libPods-IRLDocumentScanner.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IRLDocumentScanner.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8276EC42204072980059427F /* UIButton+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extensions.h"; sourceTree = "<group>"; };
 		8276EC43204072980059427F /* UIButton+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extensions.m"; sourceTree = "<group>"; };
 		8287E6EF1FD01398005B4668 /* IRLDocumentScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRLDocumentScanner.h; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				508FF80988B5203AE84B3841 /* Pods_IRLDocumentScanner.framework in Frameworks */,
+				2487D04ADC3E397B23F02E1A /* libPods-IRLDocumentScanner.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +70,7 @@
 		6D2A85C8DD9B49E2CBE4D806 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				47682B8BAED00F649E102B63 /* Pods_IRLDocumentScanner.framework */,
+				392D65C3F3460DDE95A928F0 /* libPods-IRLDocumentScanner.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -168,6 +168,7 @@
 				82EBC18C1FD013620079182A /* Frameworks */,
 				82EBC18D1FD013620079182A /* Headers */,
 				82EBC18E1FD013620079182A /* Resources */,
+				F80C7715D1AE2920D9E5D487 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,6 +247,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F80C7715D1AE2920D9E5D487 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IRLDocumentScanner/Pods-IRLDocumentScanner-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/TOCropViewController/TOCropViewControllerBundle.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TOCropViewControllerBundle.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IRLDocumentScanner/Pods-IRLDocumentScanner-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
