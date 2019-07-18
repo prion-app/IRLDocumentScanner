@@ -18,6 +18,5 @@ FOUNDATION_EXPORT const unsigned char IRLDocumentScannerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <IRLDocumentScanner/PublicHeader.h>
 
-@import TOCropViewController;
 #import "IRLDocumentScanner.h"
 
