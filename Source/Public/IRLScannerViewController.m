@@ -309,16 +309,6 @@
     imgView.opaque = NO;
     imgView.alpha = 0.0f;
     imgView.transform = CGAffineTransformMakeScale(0.4f, 0.4f);
-
-    // Some Feedback to the User
-    UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
-    white.backgroundColor = UIColor.whiteColor;
-    white.alpha = 0.0f;
-
-    [self.view addSubview:white];
-    [UIView animateWithDuration:0.2f animations:^{
-        white.alpha = 1.0f;
-    }];
     
     if ([sender isKindOfClass:[UIButton class]]) {
         
