@@ -347,7 +347,6 @@
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
     [cropViewController dismissViewControllerAnimated:YES completion:^{
-        [self.scan_button setHidden:NO];
         [self.cameraView stop];
         [self.cameraView setupCameraView];
         [self.cameraView start];
