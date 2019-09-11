@@ -310,51 +310,26 @@
     imgView.alpha = 0.0f;
     imgView.transform = CGAffineTransformMakeScale(0.4f, 0.4f);
     
-    if ([sender isKindOfClass:[UIButton class]]) {
-        
-        [self.cameraView captureImageWithCompletionHander:^(id data)
-         {
-             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-             
-             TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
-             cropViewController.delegate = self;
-             cropViewController.aspectRatioPickerButtonHidden = YES;
-             cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-     	     cropViewController.cancelButtonTitle = @"Retake";
-       	     cropViewController.doneButtonTitle = @"Save";
-             
-             switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-                case UIInterfaceOrientationLandscapeLeft: cropViewController.angle = 90; break;
-                case UIInterfaceOrientationLandscapeRight: cropViewController.angle = -90; break;
-                default: break;
-             }
-             
-             [self presentViewController:cropViewController animated:YES completion:nil];
-             
-         }];
-
-    } else {
-        
-        [self.view addSubview:imgView];
-
-        [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-            imgView.alpha = 1.0f;
-            
-        } completion:nil];
-        
-        // the Actual Capture
-        [self.cameraView captureImageWithCompletionHander:^(id data) {
-            UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-            
-            if (self.camera_PrivateDelegate){
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [self.camera_PrivateDelegate pageSnapped:image from:self];
-                });
-            }
-        }];
-
-    }
+    [self.cameraView captureImageWithCompletionHander:^(id data)
+     {
+         UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+         
+         TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
+         cropViewController.delegate = self;
+         cropViewController.aspectRatioPickerButtonHidden = YES;
+         cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+         cropViewController.cancelButtonTitle = @"Retake";
+         cropViewController.doneButtonTitle = @"Save";
+         
+         switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+             case UIInterfaceOrientationLandscapeLeft: cropViewController.angle = 90; break;
+             case UIInterfaceOrientationLandscapeRight: cropViewController.angle = -90; break;
+             default: break;
+         }
+         
+         [self presentViewController:cropViewController animated:YES completion:nil];
+         
+     }];
 }
 
 #pragma mark - TOCropViewControllerDelegate
